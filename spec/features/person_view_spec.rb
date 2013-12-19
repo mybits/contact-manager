@@ -47,4 +47,10 @@ describe 'the person view', tyoe: :feature do
     expect(page).to have_content('999-3333')
     expect(page).to_not have_content(old_number)
   end
+
+  it 'has a link to destroy phone numbers' do
+    person.phone_numbers.each do |phone|
+      expect(page).to have_link('delete', href: phone_number_path(phone))
+    end
+  end
 end
