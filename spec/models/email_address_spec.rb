@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe EmailAddress do
 
-  let(:email_address) { EmailAddress.new(address: 'example@example.com') }
+  let(:email_address) { EmailAddress.new(address: 'example@example.com', person_id: 1) }
 
   it 'is valid' do
     expect(email_address).to be_valid
@@ -10,6 +10,11 @@ describe EmailAddress do
 
   it 'is invalid without an address' do
     email_address.address = nil
+    expect(email_address).to_not be_valid
+  end
+
+  it 'must has a reference to a person' do
+    email_address.person_id = nil
     expect(email_address).to_not be_valid
   end
 
