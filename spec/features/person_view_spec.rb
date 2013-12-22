@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'capybara/rails'
 require 'capybara/rspec'
 
-describe 'the person view', tyoe: :feature do
+describe 'the person view', type: :feature do
 
   let(:person) { Person.create(first_name: 'John', last_name: 'Doe') }
 
@@ -53,4 +53,22 @@ describe 'the person view', tyoe: :feature do
       expect(page).to have_link('delete', href: phone_number_path(phone))
     end
   end
+end
+
+describe 'email address display', type: :feature do
+  let(:person) { Person.create(first_name: 'Alice', last_name: 'Smith') }
+
+  before(:each) do
+    person.email_addresses.create(address: 'user@example.com')
+    person.email_addresses.create(address: 'user2@example.com')
+    visit person_path(person)
+  end
+
+  it 'has a LI selector' do
+    person.email_addresses.each do |email|
+      expect(page).to have_selector('li', text: email.address)
+    end
+  end
+
+
 end
