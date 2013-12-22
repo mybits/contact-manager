@@ -70,5 +70,9 @@ describe 'email address display', type: :feature do
     end
   end
 
+  it 'has an add email address link' do
+    expect(page).to have_link('Add email address', href: new_email_address_path(person_id: person.id))
+  end
+
 
 end
