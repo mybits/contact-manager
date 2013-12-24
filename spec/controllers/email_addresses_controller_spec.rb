@@ -137,6 +137,10 @@ describe EmailAddressesController do
   end
 
   describe "DELETE destroy" do
+
+    let(:john) { Person.create(first_name: 'John', last_name: 'Smith') }
+    let(:valid_attributes) { {address: 'john@example.com', person_id: john.id} }
+
     it "destroys the requested email_address" do
       email_address = EmailAddress.create! valid_attributes
       expect {
@@ -145,9 +149,11 @@ describe EmailAddressesController do
     end
 
     it "redirects to the email_addresses list" do
+      john = Person.create(first_name: 'John', last_name: 'Smith')
+      valid_attributes = { address: 'john@example.com', person_id: john.id }
       email_address = EmailAddress.create! valid_attributes
       delete :destroy, {:id => email_address.to_param}, valid_session
-      response.should redirect_to(email_addresses_url)
+      response.should redirect_to(john)
     end
   end
 
