@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Company do
-  let(:company) { Company.new(name: 'Chacha') }
+  let(:company) { Company.create(name: 'Chacha') }
 
   it 'is valid' do
     expect(company).to be_valid
@@ -17,7 +17,7 @@ describe Company do
   end
 
   it "responds with its phone numbers after they're created" do
-    phone_number = company.phone_numbers.build(number: '111-222')
+    phone_number = company.phone_numbers.create(number: '111-222')
     expect(phone_number.number).to eq('111-222')
   end
 
