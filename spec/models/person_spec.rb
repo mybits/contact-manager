@@ -26,4 +26,14 @@ describe Person do
   it 'has an array of email addresses' do
     expect(person.email_addresses).to eq([])
   end
+
+  it 'respond with its created phone numbers' do
+    person.phone_numbers.build(number: '111-222')
+    expect(person.phone_numbers.map(&:number)).to eq(['111-222'])
+  end
+
+  it 'respond with its created email addresses' do
+    person.email_addresses.build(address: 'test@example.com')
+    expect(person.email_addresses.map(&:address)).to eq(['test@example.com'])
+  end
 end
