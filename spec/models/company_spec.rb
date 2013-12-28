@@ -21,5 +21,9 @@ describe Company do
     expect(phone_number.number).to eq('111-222')
   end
 
+  it "responds with its email addresses after they're created" do
+    email_address = company.email_addresses.create(address: 'test@test.com')
+    expect(email_address.address).to eq('test@test.com')
+  end
 
 end
