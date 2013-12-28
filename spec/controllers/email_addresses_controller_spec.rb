@@ -5,7 +5,7 @@ describe EmailAddressesController do
   # This should return the minimal set of attributes required to create a valid
   # EmailAddress. As you add validations to EmailAddress, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "address" => "MyString", "person_id" => 1 } }
+  let(:valid_attributes) { { "address" => "MyString", "contact_id" => 1, "contact_type" => "Person" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -47,7 +47,7 @@ describe EmailAddressesController do
     describe "with valid params" do
 
       let(:alice) { Person.create(first_name: 'Alice', last_name: 'Smith') }
-      let(:valid_attributes) { {address: 'test@example.com', person_id: alice.id} }
+      let(:valid_attributes) { {address: 'test@example.com', contact_id: alice.id, contact_type: 'Person'} }
 
       it "creates a new EmailAddress" do
         expect {
@@ -63,7 +63,7 @@ describe EmailAddressesController do
 
       it "redirects to the created email_address's person" do
         alice = Person.create(first_name: 'Alice', last_name: 'Smith')
-        valid_attributes = { address: 'test@example.com', person_id: alice.id }
+        valid_attributes = { address: 'test@example.com', contact_id: alice.id, contact_type: 'Person' }
         post :create, {:email_address => valid_attributes}, valid_session
         response.should redirect_to(alice)
       end
@@ -90,7 +90,7 @@ describe EmailAddressesController do
     describe "with valid params" do
 
       let(:john) { Person.create(first_name: 'John', last_name: 'Smith') }
-      let(:valid_attributes) { {address: 'john@example.com', person_id: john.id} }
+      let(:valid_attributes) { {address: 'john@example.com', contact_id: john.id, contact_type: 'Person'} }
 
       it "updates the requested email_address" do
         email_address = EmailAddress.create! valid_attributes
@@ -110,7 +110,7 @@ describe EmailAddressesController do
 
       it "redirects to the email_address" do
         john = Person.create(first_name: 'John', last_name: 'Smith')
-        valid_attributes = { address: 'john@example.com', person_id: john.id }
+        valid_attributes = { address: 'john@example.com', contact_id: john.id, contact_type: 'Person' }
         email_address = EmailAddress.create! valid_attributes
         put :update, {:id => email_address.to_param, :email_address => valid_attributes}, valid_session
         response.should redirect_to(john)
@@ -139,7 +139,7 @@ describe EmailAddressesController do
   describe "DELETE destroy" do
 
     let(:john) { Person.create(first_name: 'John', last_name: 'Smith') }
-    let(:valid_attributes) { {address: 'john@example.com', person_id: john.id} }
+    let(:valid_attributes) { {address: 'john@example.com', contact_id: john.id, contact_type: 'Person'} }
 
     it "destroys the requested email_address" do
       email_address = EmailAddress.create! valid_attributes
@@ -150,7 +150,7 @@ describe EmailAddressesController do
 
     it "redirects to the email_addresses list" do
       john = Person.create(first_name: 'John', last_name: 'Smith')
-      valid_attributes = { address: 'john@example.com', person_id: john.id }
+      valid_attributes = { address: 'john@example.com', contact_id: john.id, contact_type: 'Person' }
       email_address = EmailAddress.create! valid_attributes
       delete :destroy, {:id => email_address.to_param}, valid_session
       response.should redirect_to(john)
