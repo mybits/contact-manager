@@ -54,3 +54,58 @@ describe 'the company view', type: :feature do
     end
   end
 end
+
+describe 'email address display', type: :feature do
+
+  let(:company) { Company.create(name: 'Chacha') }
+
+  before(:each) do
+    company.email_addresses.create(address: 'test01@example.com')
+    company.email_addresses.create(address: 'test02@example.com')
+    visit company_path(company)
+  end
+
+  it 'shows the email address' do
+    company.email_addresses.each do |email|
+      expect(page).to have_content(email.address)
+    end
+  end
+
+  it 'has a link to add new email address' do
+    expect(page).to have_link('Add email address', href: new_email_address_path(contact_id: company,
+      contact_type: 'Company'))
+  end
+
+  it 'adds a new email address' do
+    page.click_link('Add email address')
+    page.fill_in('Address', with: 'test@example.com')
+    page.click_button('Create Email address')
+    expect(current_path).to eq(company_path(company))
+    expect(page).to have_content('test@example.com')
+  end
+
+  it 'has a link to edit email address' do
+    company.email_addresses.each do |email|
+      expect(page).to have_link('edit', href: edit_email_address_path(email))
+    end
+  end
+
+  it 'edits email address' do
+    email = company.email_addresses.first
+    old_email = email.address
+
+    first(:link, 'edit').click
+    page.fill_in('Address', with: 'updated@example.com')
+    page.click_button('Update Email address')
+    expect(current_path).to eq(company_path(company))
+    expect(page).to have_content('updated@example.com')
+    expect(page).to_not have_content(old_email)
+  end
+
+  it 'has a link to delete email address' do
+    company.email_addresses.each do |email|
+      expect(page).to have_link('delete', href: email_address_path(email))
+    end
+  end
+
+end
