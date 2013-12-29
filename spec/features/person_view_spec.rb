@@ -71,7 +71,8 @@ describe 'email address display', type: :feature do
   end
 
   it 'has an add email address link' do
-    expect(page).to have_link('Add email address', href: new_email_address_path(person_id: person.id))
+    expect(page).to have_link('Add email address', href: new_email_address_path(contact_id: person.id,
+      contact_type: 'Person'))
   end
 
   it 'adds a new email address' do
@@ -100,7 +101,7 @@ describe 'email address display', type: :feature do
     expect(page).to_not have_content(old_email)
   end
 
-  it 'has alink to delete email address' do
+  it 'has a link to delete email address' do
     person.email_addresses.each do |email|
       expect(page).to have_link('delete', href: email_address_path(email))
     end
