@@ -4,9 +4,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -14,9 +11,13 @@
     <% @companies.each do |company| %>
       <tr>
         <td><%= company.name %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <ul>
+            <li class="actions"><%= link_to 'Show', company %></li>
+            <li class="actions"><%= link_to 'Edit', edit_company_path(company) %></li>
+            <li class="actions"><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          </ul>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Company', new_company_path %>
+<%= link_to 'New Company', new_company_path, id: 'new_company' %>
