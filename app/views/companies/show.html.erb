@@ -5,19 +5,11 @@
   <%= @company.name %>
 </p>
 
-<ul><% @company.phone_numbers.each do |phone| %>
-  <li><%= phone.number %> <%= link_to 'edit', edit_phone_number_path(phone) %>
-   | <%= link_to 'delete', phone_number_path(phone), method: :delete, data: { confirm: 'Are you sure?'} %></li>
-  <% end %>
-</ul>
+<%= render 'phone_numbers/phone_numbers', phone_numbers: @company.phone_numbers %>
 
 <p><%= link_to 'Add phone number', new_phone_number_path(contact_id: @company.id, contact_type: 'Company') %></p>
 
-<ul><% @company.email_addresses.each do |email| %>
-  <li><%= email.address %> <%= link_to 'edit', edit_email_address_path(email) %>
-   | <%= link_to 'delete', email_address_path(email), method: :delete, data: { confirm: 'Are you sure?'} %></li>
-  <% end %>
-</ul>
+<%= render 'email_addresses/email_addresses', email_addresses: @company.email_addresses %>
 
 <p><%= link_to 'Add email address', new_email_address_path(contact_id: @company.id, contact_type: 'Company') %></p>
 
