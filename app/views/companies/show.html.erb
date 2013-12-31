@@ -1,17 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
+<div class="company">
+  <p>
+    <strong> <%= @company.name %></strong>
+  </p>
 
-<%= render 'phone_numbers/phone_numbers', phone_numbers: @company.phone_numbers %>
+  <%= render 'phone_numbers/phone_numbers', phone_numbers: @company.phone_numbers %>
 
-<p><%= link_to 'Add phone number', new_phone_number_path(contact_id: @company.id, contact_type: 'Company') %></p>
+  <p><%= link_to 'Add phone number', new_phone_number_path(contact_id: @company.id, contact_type: 'Company') %></p>
 
-<%= render 'email_addresses/email_addresses', email_addresses: @company.email_addresses %>
+  <%= render 'email_addresses/email_addresses', email_addresses: @company.email_addresses %>
 
-<p><%= link_to 'Add email address', new_email_address_path(contact_id: @company.id, contact_type: 'Company') %></p>
+  <p><%= link_to 'Add email address', new_email_address_path(contact_id: @company.id, contact_type: 'Company') %></p>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+  <%= link_to 'Edit', edit_company_path(@company) %> |
+  <%= link_to 'Back', companies_path %>
+</div>
