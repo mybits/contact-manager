@@ -26,4 +26,8 @@ describe Company do
     expect(email_address.address).to eq('test@test.com')
   end
 
+  it 'convert to a string with name' do
+    expect(company.to_s).to eq "Chacha"
+  end
+
 end

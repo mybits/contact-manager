@@ -36,4 +36,8 @@ describe Person do
     person.email_addresses.build(address: 'test@example.com')
     expect(person.email_addresses.map(&:address)).to eq(['test@example.com'])
   end
+
+  it 'convert to a string with first name last name' do
+    expect(person.to_s).to eq "Alice Smith"
+  end
 end
