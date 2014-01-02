@@ -1,9 +1,9 @@
 <% content_for :title, "Contact manager | #{@company.name}" %>
-<h1>Editing company</h1>
+<h1>Editing <%="#{@company.name}"%></h1>
 
 <%= render 'form' %>
 
 <ul>
   <li><%= link_to 'Show', @company %> </li>
-  <li><%= link_to 'Back', company_path %></li>
+  <li><%= link_to 'Back', companies_path %></li>
 </ul>

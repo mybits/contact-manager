@@ -1,5 +1,5 @@
 <% content_for :title, "Contact manager | #{@person.first_name} #{@person.last_name}" %>
-<h1>Editing person</h1>
+<h1>Editing <%= "#{@person.first_name} #{@person.last_name}" %></h1>
 
 <%= render 'form' %>
 
