@@ -1,0 +1,8 @@
+- content_for :title, "Contact manager | #{@person.first_name} #{@person.last_name}"
+%h1
+  Editing #{@person.first_name} #{@person.last_name}
+= render 'form'
+%ul
+  %li
+    = link_to 'Show', @person
+  %li= link_to 'Back', people_path

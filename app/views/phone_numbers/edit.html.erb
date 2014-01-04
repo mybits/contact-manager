@@ -1,6 +1,0 @@
-<% content_for :title, "Contact manager | Editing Phone Number" %>
-<h1>Editing Phone Number for <%= "#{@phone_number.contact}" %></h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', polymorphic_url(@phone_number.contact) %>

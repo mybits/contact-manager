@@ -1,0 +1,5 @@
+- content_for :title, "Contact manager | Editing Email Address"
+%h1
+  Editing Email Address for #{@email_address.contact}
+= render 'form'
+= link_to 'Back', polymorphic_url(@email_address.contact)

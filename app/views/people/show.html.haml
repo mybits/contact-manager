@@ -1,0 +1,14 @@
+- content_for :title, "Contact manager | #{@person.first_name} #{@person.last_name}"
+%p#notice= notice
+.person
+  %p
+    %strong
+      = @person.first_name
+      = @person.last_name
+  = render 'phone_numbers/phone_numbers', phone_numbers: @person.phone_numbers
+  %p= link_to 'Add phone number', new_phone_number_path(contact_id: @person.id, contact_type: 'Person')
+  = render 'email_addresses/email_addresses', email_addresses: @person.email_addresses
+  %p= link_to 'Add email address', new_email_address_path(contact_id: @person.id, contact_type: 'Person')
+  = link_to 'Edit', edit_person_path(@person)
+  |
+  \#{link_to 'Back', people_path}

@@ -1,6 +1,0 @@
-<% content_for :title, "Contact manager | Editing Email Address" %>
-<h1>Editing Email Address for <%= "#{@email_address.contact}" %></h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', polymorphic_url(@email_address.contact) %>
