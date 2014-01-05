@@ -8,7 +8,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'thin'
 gem 'haml-rails'
-
+gem 'omniauth'
+gem 'omniauth-twitter'
 
 group :development, :test do
   gem 'rspec-rails'
