@@ -1,4 +1,4 @@
-- content_for :title, "Contact manager | #{@company.name}"
+- content_for :title, "Contact manager | #{@company.to_s}"
 %h1
   Editing #{"#{@company.name}"}
 = render 'form'
