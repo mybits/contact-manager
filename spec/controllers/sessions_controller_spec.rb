@@ -4,6 +4,17 @@ describe SessionsController do
 
   describe "#create" do
 
+  before(:each) do
+    Rails.application.routes.draw do
+    resource :sessions, only: [:create]
+    root to: 'site#index'
+    end
+  end
+
+  after(:each) do
+    Rails.application.reload_routes!
+  end
+
     it "logs in a new user" do
       @request.env["omniauth.auth"] = {
         'provider' => 'twitter',
@@ -28,6 +39,19 @@ describe SessionsController do
       post :create
       expect(User.count).to eq(1)
       expect(controller.current_user.id).to eq(user.id)
+    end
+
+
+    it "redirects to the companies page" do
+      @request.env["omniauth.auth"] = {
+        'provider' => 'twitter',
+        'info' => { 'name' => 'Ed Wood'},
+        'uid' => 'efg321'
+      }
+
+      user = User.create(provider: 'twitter', uid: 'efg321', name: 'Ed Wood')
+      post :create
+      expect(response).to redirect_to(root_path)
     end
   end
 
