@@ -23,7 +23,7 @@ describe SessionsController do
         'uid' => 'xyz456'
       }
 
-      User.create(provider: 'twitter', uid: 'xyz456', name: 'Bob Smith')
+      user = User.create(provider: 'twitter', uid: 'xyz456', name: 'Bob Smith')
 
       post :create
       expect(User.count).to eq(1)
