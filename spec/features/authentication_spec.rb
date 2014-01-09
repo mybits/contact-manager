@@ -12,6 +12,19 @@ describe 'the application', type: :feature do
     it 'has a login link' do
       expect(page).to have_link('Login', href: login_path)
     end
+
+    it 'does not link to logout' do
+      expect(page).to_not have_link('Logout', href: logout_path)
+    end
   end
 
+  context 'when logged in' do
+    before(:each) do
+      visit root_path
+    end
+
+    it 'has a logout link' do
+      expect(page).to have_link('Logout', href: logout_path)
+    end
+  end
 end

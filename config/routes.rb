@@ -6,5 +6,6 @@ ContactManager::Application.routes.draw do
   resources :people
   get '/auth/:provider/callback' => 'sessions#create'
   get '/login' => redirect('/auth/twitter'), as: :login
+  delete '/logout' => "sessions#destroy", as: :logout
 
 end
