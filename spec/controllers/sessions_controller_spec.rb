@@ -6,7 +6,7 @@ describe SessionsController do
 
   before(:each) do
     Rails.application.routes.draw do
-    resource :sessions, only: [:create]
+    resource :sessions, only: [:create, :destroy]
     root to: 'site#index'
     end
   end
@@ -42,7 +42,7 @@ describe SessionsController do
     end
 
 
-    it "redirects to the companies page" do
+    it "redirects to the sites page" do
       @request.env["omniauth.auth"] = {
         'provider' => 'twitter',
         'info' => { 'name' => 'Ed Wood'},
@@ -55,4 +55,38 @@ describe SessionsController do
     end
   end
 
+  describe "#destroy" do
+
+    it "logs out a user" do
+      @request.env["omniauth.auth"] = {
+        'provider' => 'twitter',
+        'info' => {'name' => 'Alice Smith'},
+        'uid' => 'abc123'
+      }
+
+      post :create
+      user = User.find_by_uid_and_provider('abc123', 'twitter')
+
+      delete :destroy
+      session[:user_id].should be_nil
+    end
+
+    it "redirects to the sites page" do
+
+      @request.env["omniauth.auth"] = {
+        'provider' => 'twitter',
+        'info' => {'name' => 'Alice Smith'},
+        'uid' => 'abc123'
+      }
+
+      post :create
+      user = User.find_by_uid_and_provider('abc123', 'twitter')
+
+      delete :destroy
+      expect(response).to redirect_to(root_path)
+    end
+
+
+
+  end
 end
