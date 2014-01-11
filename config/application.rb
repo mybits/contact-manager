@@ -32,5 +32,10 @@ module ContactManager
       end if File.exists? (env_file)
     end
 
+    config.generators do |g|
+      g.test_framework       :rspec, fixture: true
+      g.fixture_replacement  :fabrication
+    end
+
   end
 end
