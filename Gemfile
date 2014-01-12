@@ -16,7 +16,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'capybara'
   gem 'guard-rspec'
-  gem 'rb-inotify', '~> 0.9'
+  gem 'libnotify'
   gem 'fabrication'
 end
 
