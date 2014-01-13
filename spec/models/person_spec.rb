@@ -1,8 +1,11 @@
 require 'spec_helper'
 
 describe Person do
-  let(:person) do
-    Person.new(first_name: 'Alice', last_name: 'Smith')
+
+  let(:person) { Fabricate(:person) }
+
+  it 'is a child of the user' do
+    expect(person.user).to be_instance_of(User)
   end
 
   it 'is valid' do
