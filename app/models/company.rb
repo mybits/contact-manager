@@ -1,4 +1,5 @@
 class Company < ActiveRecord::Base
+  belongs_to :user
   include Contact
   validates :name, presence: true
 
