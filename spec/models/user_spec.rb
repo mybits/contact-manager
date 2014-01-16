@@ -17,7 +17,6 @@ describe User do
     end
   end
 
-
   it 'builds associated companies' do
     company_1 = Fabricate(:company)
     company_2 = Fabricate(:company)
