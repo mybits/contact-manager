@@ -5,5 +5,5 @@ def login_as(user)
     "uid" => user.uid,
     "info" => {"name" => user.name}
   }
-  visit.login_path
+  visit(login_path)
 end

@@ -12,6 +12,7 @@ describe 'people view', type: :feature do
       person_1 = Fabricate(:person)
       person_1.user = user
       person_1.save
+      login_as(user)
       visit(people_path)
       expect(page).to have_text(person_1.to_s)
     end
@@ -21,6 +22,7 @@ describe 'people view', type: :feature do
       person_2 = Fabricate(:person)
       person_2.user = user_2
       person_2.save
+      login_as(user)
       visit(people_path)
       expect(page).to_not have_text(person_2.to_s)
     end
