@@ -7,6 +7,10 @@ class PeopleController < ApplicationController
     @people = current_user.people
   end
 
+  def lookup_person
+    @person = current_user.people.find(params[:id])
+  end
+
   # GET /people/1
   # GET /people/1.json
   def show

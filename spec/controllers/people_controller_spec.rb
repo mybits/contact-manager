@@ -15,7 +15,6 @@ describe PeopleController do
 
   describe "GET index" do
     it "assigns the current user's people" do
-      user = User.create
       person = Person.create! valid_attributes.merge(user_id: user.id)
       get :index, {}, { user_id: user.id }
       assigns(:people).should eq([person])
