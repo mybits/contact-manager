@@ -31,9 +31,10 @@ describe CompaniesController do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all companies as @companies" do
-      company = Company.create! valid_attributes
-      get :index, {}, valid_session
+    it "assigns all the current user's companies" do
+      user = User.create
+      company = Company.create! valid_attributes.merge(user_id: user.id)
+      get :index, {}, { user_id: user.id }
       assigns(:companies).should eq([company])
     end
   end
