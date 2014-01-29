@@ -8,22 +8,22 @@ describe 'the companies view', type: :feature do
     let(:user) { Fabricate(:user) }
 
     it 'displays companies associated with the user' do
-      person_1 = Fabricate(:person)
-      person_1.user = user
-      person_1.save
+      company_1 = Fabricate(:company)
+      company_1.user = user
+      company_1.save
       login_as(user)
       visit(companies_path)
-      expect(page).to have_text(person_1.to_s)
+      expect(page).to have_text(company_1.to_s)
     end
 
     it 'does not display companies associated with another user' do
       user_2 = Fabricate(:user)
-      person_2 = Fabricate(:person)
-      person_2.user = user_2
-      person_2.save
+      company_2 = Fabricate(:company)
+      company_2.user = user_2
+      company_2.save
       login_as(user)
       visit(companies_path)
-      expect(page).to_not have_text(person_2.to_s)
+      expect(page).to_not have_text(company_2.to_s)
     end
   end
 end
