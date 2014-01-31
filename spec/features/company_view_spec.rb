@@ -2,13 +2,15 @@ require 'spec_helper'
 require 'capybara/rails'
 require 'capybara/rspec'
 
-describe 'the company view', type: :feature do
+describe 'phone numbers display', type: :feature do
 
-  let(:company) { Company.create(name: 'Chacha') }
+  let(:company) { Fabricate(:company) }
+  let(:user) { company.user }
 
   before(:each) do
     company.phone_numbers.create(number: '111-222-333')
     company.phone_numbers.create(number: '444-555-666')
+    login_as(user)
     visit company_path(company)
   end
 
@@ -55,13 +57,15 @@ describe 'the company view', type: :feature do
   end
 end
 
-describe 'email address display', type: :feature do
+describe 'email addresses display', type: :feature do
 
-  let(:company) { Company.create(name: 'Chacha') }
+  let(:company) { Fabricate(:company) }
+  let(:user) { company.user }
 
   before(:each) do
     company.email_addresses.create(address: 'test01@example.com')
     company.email_addresses.create(address: 'test02@example.com')
+    login_as(user)
     visit company_path(company)
   end
 
