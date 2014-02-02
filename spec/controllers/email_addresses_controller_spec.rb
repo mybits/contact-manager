@@ -2,16 +2,9 @@ require 'spec_helper'
 
 describe EmailAddressesController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # EmailAddress. As you add validations to EmailAddress, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) { { "address" => "MyString", "contact_id" => 1, "contact_type" => "Person" } }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # EmailAddressesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
-
 
   describe "GET new" do
     it "assigns a new email_address as @email_address" do
@@ -79,10 +72,6 @@ describe EmailAddressesController do
 
       it "updates the requested email_address" do
         email_address = EmailAddress.create! valid_attributes
-        # Assuming there are no other email_addresses in the database, this
-        # specifies that the EmailAddress created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
         EmailAddress.any_instance.should_receive(:update).with({ "address" => "MyString" })
         put :update, {:id => email_address.to_param, :email_address => { "address" => "MyString" }}, valid_session
       end

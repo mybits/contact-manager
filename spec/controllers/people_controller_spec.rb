@@ -2,15 +2,7 @@ require 'spec_helper'
 
 describe PeopleController do
   let(:user) { Fabricate(:user) }
-
-  # This should return the minimal set of attributes required to create a valid
-  # Person. As you add validations to Person, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) { { "first_name" => "John", "last_name" => "Doe", "user_id" => user.id } }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # PeopleController. Be sure to keep this updated too.
   let(:valid_session) { {user_id: user.id} }
 
   describe "GET index" do
@@ -85,10 +77,6 @@ describe PeopleController do
     describe "with valid params" do
       it "updates the requested person" do
         person = Person.create! valid_attributes
-        # Assuming there are no other people in the database, this
-        # specifies that the Person created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
         Person.any_instance.should_receive(:update).with({ "first_name" => "MyString" })
         put :update, {:id => person.to_param, :person => { "first_name" => "MyString" }}, valid_session
       end

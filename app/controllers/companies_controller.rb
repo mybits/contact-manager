@@ -1,28 +1,20 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
-  # GET /companies
-  # GET /companies.json
   def index
     @companies = current_user.companies
   end
 
-  # GET /companies/1
-  # GET /companies/1.json
   def show
   end
 
-  # GET /companies/new
   def new
     @company = Company.new
   end
 
-  # GET /companies/1/edit
   def edit
   end
 
-  # POST /companies
-  # POST /companies.json
   def create
     @company = Company.new(company_params)
 
@@ -37,8 +29,6 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /companies/1
-  # PATCH/PUT /companies/1.json
   def update
     respond_to do |format|
       if @company.update(company_params)
@@ -51,8 +41,6 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # DELETE /companies/1
-  # DELETE /companies/1.json
   def destroy
     @company.destroy
     respond_to do |format|

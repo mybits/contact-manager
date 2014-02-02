@@ -3,14 +3,8 @@ require 'spec_helper'
 
 describe PhoneNumbersController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # PhoneNumber. As you add validations to PhoneNumber, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) { { "number" => "MyString", "contact_id" => 1, "contact_type" => 'Person' } }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # PhoneNumbersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
 
@@ -80,10 +74,6 @@ describe PhoneNumbersController do
 
       it "updates the requested phone_number" do
         phone_number = PhoneNumber.create! valid_attributes
-        # Assuming there are no other phone_numbers in the database, this
-        # specifies that the PhoneNumber created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
         PhoneNumber.any_instance.should_receive(:update).with({ "number" => "MyString" })
         put :update, {:id => phone_number.to_param, :phone_number => { "number" => "MyString" }}, valid_session
       end

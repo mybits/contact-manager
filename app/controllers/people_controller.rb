@@ -1,8 +1,6 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
-  # GET /people
-  # GET /people.json
   def index
     @people = current_user.people
   end
@@ -11,22 +9,16 @@ class PeopleController < ApplicationController
     @person = current_user.people.find(params[:id])
   end
 
-  # GET /people/1
-  # GET /people/1.json
   def show
   end
 
-  # GET /people/new
   def new
     @person = Person.new
   end
 
-  # GET /people/1/edit
   def edit
   end
 
-  # POST /people
-  # POST /people.json
   def create
     @person = Person.new(person_params)
 
@@ -41,8 +33,6 @@ class PeopleController < ApplicationController
     end
   end
 
-  # PATCH/PUT /people/1
-  # PATCH/PUT /people/1.json
   def update
     respond_to do |format|
       if @person.update(person_params)
@@ -55,8 +45,6 @@ class PeopleController < ApplicationController
     end
   end
 
-  # DELETE /people/1
-  # DELETE /people/1.json
   def destroy
     @person.destroy
     respond_to do |format|
