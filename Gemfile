@@ -10,6 +10,7 @@ gem 'thin'
 gem 'haml-rails'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'better_errors'
 
 group :development, :test do
   gem 'rspec-rails'
