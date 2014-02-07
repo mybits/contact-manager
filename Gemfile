@@ -11,6 +11,7 @@ gem 'haml-rails'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'better_errors'
+gem 'zurb-foundation'
 
 group :development, :test do
   gem 'rspec-rails'
